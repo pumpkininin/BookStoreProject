@@ -43,7 +43,7 @@ public class MainController {
     private BookService bookService;
     @Autowired
     private VerificationTokenService verificationTokenService;
-    @GetMapping(value = {"/"})
+    @GetMapping(value = {"/", ""})
     public String index(Model model) {
         List<Book> books = bookService.get4Book();
         model.addAttribute("books", books);
