@@ -14,9 +14,9 @@
     <packaging>jar</packaging>
     <name>BookStore</name>
     <description>Bookstore management project</description>
-<!--    <properties>-->
-<!--        <java.version>11</java.version>-->
-<!--    </properties>-->
+    <properties>
+        <java.version>11</java.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -150,6 +150,7 @@
     </dependencies>
 
     <build>
+        <finalName>BookStore</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
