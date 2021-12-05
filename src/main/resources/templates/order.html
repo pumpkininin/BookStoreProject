@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link th:replace="~{fragments/header :: link}"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/fragments/header :: header}"></div>
+<div class="jumbotron">
+    <!-- Container -->
+    <div class="container">
+        <div data-aos="fade-right">
+            <h1>All order and shipment status listed here</span>
+
+            </h1>
+        </div>
+        <!-- Row -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End-->
+</div>
+<div class="cart-container" style="margin-top: 120px">
+    <h1>Order</h1>
+    <h3>List of order you has been request!</h3>
+    <div class="cart-list">
+
+        <table>
+            <thead>
+            <tr>
+                <td th:width="700px">Book title</td>
+                <td th:width="120px">Status</td>
+                <td th:width="120px">Subtotal</td>
+                <td th:width="60px">Cancel</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orderDtos}">
+                <td>
+                    <div class="book-card">
+                        <div class="book-img-holder">
+                            <img th:src="${order.book.img}" alt="" srcset="">
+                        </div>
+                        <div class="book-info">
+                            <h3 th:text="${order.book.getTitle()}">Title </h3>
+                            <h4 th:text="${order.book.getPrice()}">Unit price</h4>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="update-quantity">
+
+                        <div class="current-quantity" th:text="${order.getStatus()}">1</div>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="sub-total" th:text="${order.getSubTotal()}">2000</div>
+                </td>
+                <td>
+                    <a th:href="@{/user/order/cancel/{orderId}/{bookId}(orderId = ${order.getOrderId()}, bookId = ${order.getBook().getBookId()})}">
+                        <i style="font-size: 2rem;" class="fa fa-minus-square"></i>
+                    </a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</body>
+</html>

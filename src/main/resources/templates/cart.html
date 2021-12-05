@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link th:replace="~{fragments/header :: link}"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{/fragments/header :: header}"></div>
+<div class="jumbotron">
+    <!-- Container -->
+    <div class="container">
+        <div data-aos="fade-right">
+            <h1>All product you has been chosen listed here</span>
+            </h1>
+            <a class="btn btn-primary btn-lg" href="shop.html" role="button">Continue shopping</a>
+        </div>
+        <!-- Row -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End-->
+</div>
+<div class="cart-container" style="margin-top: 120px">
+    <h1>Cart</h1>
+    <h3>You got <span th:text="${count}"></span> in you cart!</h3>
+    <div class="cart-list">
+
+        <table>
+            <thead>
+            <tr>
+                <td th:width="700px">Book title</td>
+                <td th:width="150px">Quantity</td>
+                <td th:width="150px">Subtotal</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartItem : ${cartDtos}">
+                <td>
+                    <div class="book-card">
+                        <div class="book-img-holder">
+                            <img th:src="${cartItem.getBook().getImg()}" alt="" srcset="">
+                        </div>
+                        <div class="book-info">
+                            <h3 th:text="${cartItem.book.getTitle()}">Title </h3>
+                            <h4 th:text="${cartItem.book.getPrice()}">Unit price</h4>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="update-quantity">
+                        <form th:action="@{/user/cart/sub/{bookId}(bookId=${cartItem.book.getBookId()})}">
+                            <button type="submit">-</button>
+                        </form>
+                        <div class="current-quantity" th:text="${cartItem.getQuantity()}">1</div>
+                        <form th:action="@{/user/cart/add/{bookId}(bookId=${cartItem.book.getBookId()})}">
+                            <button type="submit">+</button>
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <div class="sub-total" th:text="${cartItem.getSubTotal()}">2000</div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <form class="checkout" style="float:right; margin-top: 10px; border-top: 1px black solid" action="/user/cart/checkout">
+        <h2>Summary</h2>
+        <h3 th:text="'Total price: $' + ${totalPrice}"></h3>
+        <div>
+            <label for="voucher">Voucher</label>
+            <select name="voucher" id="voucher" >
+                <option th:each="voucher : ${vouchers}" th:value="${voucher.voucherId}" th:text="${voucher.code}"></option>
+            </select>
+            <br/>
+            <br/>
+            <div class="btn-group" style="float: contour; border-radiu: 0 !important;">
+                <button href="#" class="btn btn-warning btn-signin" style="border-radius: 100px " type="submit">Checkout</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

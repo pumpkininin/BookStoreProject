@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: 1px solid black;
+}
+
+.left-header > a {
+    display: block;
+    line-height: 50px;
+}
+
+.left-header > a > img {
+    height: 50px;
+    width: auto;
+    align-items: center;
+}
+
+.right-header > a {
+    line-height: 50px;
+    margin-right: 20px;
+    font-size: 18px;
+}

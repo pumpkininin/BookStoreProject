@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link th:replace="~{fragments/header :: link}"/>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/css/uikit.min.css"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.4/dist/js/uikit-icons.min.js"></script>
+    <script src="all.min.js"></script>
+    <style>
+        body {
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            margin-top: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .black {
+            color: black;
+        }
+
+        .left {
+            padding: 10px;
+        }
+
+        .right {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .right::after {
+            content: "";
+            display: table;
+            clear: both;
+
+        }
+
+        .acc {
+            float: left;
+            width: 50%;
+        }
+
+
+        /*form.search input[type=text] {*/
+        /*    padding: 6px;*/
+        /*    border-right: none;*/
+        /*    float: left;*/
+        /*    width: 90%;*/
+        /*}*/
+
+        /*form.search button {*/
+        /*    width: 10%;*/
+        /*    padding: 6px;*/
+        /*    border-left: none;*/
+        /*    cursor: pointer;*/
+        /*    background: white;*/
+        /*}*/
+
+
+        /*form.search button:hover {*/
+        /*    background:rgb(170, 168, 168);*/
+        /*}*/
+
+        /*form.search::after {*/
+        /*    content: "";*/
+        /*    clear: both;*/
+        /*    display: table;*/
+        /*}*/
+
+        .mySlides {
+            display: none
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 30px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: gray;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .prev, .next, .text {
+                font-size: 11px
+            }
+        }
+
+        .container::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .product {
+            float: right;
+            width: 25%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product_info::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .product_info {
+            background-color: gray;
+            width: 200px;
+            margin: auto;
+        }
+
+        .c {
+            border: solid 1px black;
+        }
+
+        .t {
+            width: 50%;
+            float: left;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .cart {
+            padding: 21px;
+        }
+
+
+        .footer {
+            background-color: rgb(17, 17, 59);
+            color: white;
+
+        }
+
+        .f {
+            float: left;
+            width: 25%;
+            padding: 20px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a {
+            /*color: white;*/
+            text-decoration: none;
+        }
+
+
+        .img-holder {
+            height: 300px;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        .img-holder > img {
+            object-fit: contain;
+            width: 100%;
+            max-height: 100%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}">
+
+</div>
+
+
+<div class="slideshow-container">
+
+    <div class="mySlides fade">
+        <img src="pink.png" style="width:100%" height="550px">
+        <div class="text">Pink</div>
+    </div>
+
+    <div class="mySlides fade">
+        <img src="blue.png" style="width:100%" height="550px">
+        <div class="text">Blue</div>
+    </div>
+
+    <div class="mySlides fade">
+        <img src="yellow.jpg" style="width:100%" height="550px">
+        <div class="text">Yellow</div>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+
+
+<div class="content">
+
+    <h2>Top seller</h2>
+
+    <div class="container seller c">
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+
+            <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m">
+                <li th:each="book :${topRate}">
+                    <div class="product">
+                        <div class="img-holder">
+                            <img th:src="${book.img}" alt="cat" width="200px" height="220px">
+                        </div>
+                        <div class="product_info">
+
+                            <div class="t">
+                                <p th:text="${book.title}"></p>
+                                <p th:text="${book.price}"></p>
+                            </div>
+                            <div class="t cart">
+                                <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+               uk-slider-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+               uk-slider-item="next"></a>
+
+        </div>
+        <!--            <div class="product" th:each="book : ${topRate}">-->
+        <!--                <img th:src="${book.img}" alt="cat" width="200px" height="220px">-->
+
+        <!--                <div class="product_info">-->
+
+        <!--                    <div class="t">-->
+        <!--                        <p th:text="${book.title}"></p>-->
+        <!--                        <p th:text="${book.price}"></p>-->
+        <!--                    </div>-->
+        <!--                    <div class="t cart">-->
+        <!--                        <button type="submit" class="btn-add"> <i class="fas fa-cart-plus fa-2x" id="la"></i> </button>-->
+        <!--                    </div>-->
+
+        <!--                </div>-->
+        <!--            </div>-->
+
+
+        <!--        <div class="product">-->
+        <!--            <img src="xam.jpg" alt="cat" width="200px" height="220px">-->
+
+        <!--            <div class="product_info">-->
+
+        <!--                <div class="t">-->
+        <!--                    <p>Title</p>-->
+        <!--                    <p>Price</p>-->
+        <!--                </div>-->
+        <!--                <div class="t cart">-->
+        <!--                    <button type="submit" class="btn-add"> <i class="fas fa-cart-plus fa-2x" id="la"></i> </button>-->
+        <!--                </div>-->
+
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <!--        <div class="product">-->
+        <!--            <img src="xam.jpg" alt="cat" width="200px" height="220px">-->
+
+        <!--            <div class="product_info">-->
+
+        <!--                <div class="t">-->
+        <!--                    <p>Title</p>-->
+        <!--                    <p>Price</p>-->
+        <!--                </div>-->
+        <!--                <div class="t cart">-->
+        <!--                    <button type="submit" class="btn-add"> <i class="fas fa-cart-plus fa-2x" id="la"></i> </button>-->
+        <!--                </div>-->
+
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <!--        <div class="product">-->
+        <!--            <img src="xam.jpg" alt="cat" width="200px" height="220px">-->
+
+        <!--            <div class="product_info">-->
+
+        <!--                <div class="t">-->
+        <!--                    <p>Title</p>-->
+        <!--                    <p>Price</p>-->
+        <!--                </div>-->
+        <!--                <div class="t cart">-->
+        <!--                    <button type="submit" class="btn-add"> <i class="fas fa-cart-plus fa-2x" id="la"></i> </button>-->
+        <!--                </div>-->
+
+        <!--            </div>-->
+        <!--        </div>-->
+
+
+    </div>
+    <h2>Top rating</h2>
+    <div class="container rating c">
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <h2>Top hi</h2>
+    <div class="container hi c">
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="xam.jpg" alt="cat" width="200px" height="220px">
+
+            <div class="product_info">
+
+                <div class="t">
+                    <p>Title</p>
+                    <p>Price</p>
+                </div>
+                <div class="t cart">
+                    <button type="submit" class="btn-add"><i class="fas fa-cart-plus fa-2x" id="la"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<footer class="footer">
+    <div class="container">
+        <div class="f information">
+            <h3>Information</h3>
+            <p><a href="a">New book</a></p>
+            <p><a href="a">Best seller</a></p>
+            <p><a href="a">Category</a></p>
+
+        </div>
+        <div class="f myAcc">
+            <h3>My Account</h3>
+            <p><a href="a">My orders</a></p>
+            <p><a href="a">My favorites</a></p>
+            <p><a href="a">My feedback</a></p>
+            <p><a href="a">My personal info</a></p>
+            <p><a href="a">My credit details</a></p>
+
+        </div>
+        <div class="f publisher">
+            <h3>Top Publisher</h3>
+            <p><a href="a">NXB Kim Dong</a></p>
+            <p><a href="a">NXB Giao Duc</a></p>
+            <p><a href="a">NXB Thanh Nien</a></p>
+
+        </div>
+        <div class="f followus">
+            <h3>Follow us</h3>
+            <a href="https://twitter.com/login?lang=vi">
+
+                <i class="fab fa-facebook fa-2x"></i>
+
+            </a>
+            <a href="https://twitter.com/login?lang=vi">
+
+                <i class="fab fa-twitter fa-2x"></i>
+
+            </a>
+            <a href="https://twitter.com/login?lang=vi">
+
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="https://www.youtube.com/">
+
+                <i class="fab fa-youtube fa-2x"></i>
+            </a>
+
+        </div>
+    </div>
+
+    <span>2021 MrHagram. All Rights Reserved </span>
+
+
+</footer>
+
+
+</body>
+
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+</script>
+</html>

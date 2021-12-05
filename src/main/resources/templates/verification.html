@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link th:replace="~{fragments/header :: link}"/>-->
+<!--    &lt;!&ndash; <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">-->
+    <!-- bootstrap -->
+<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+<!--    &lt;!&ndash; Custom CSS: custom Styles &ndash;&gt;-->
+<!--    <link th:href="@{/css/animate.css}" rel="stylesheet">-->
+<!--    <link th:href="@{/css/main.css}" rel="stylesheet">-->
+<!--    <link th:href="@{/css/login.css}" rel="stylesheet">-->
+<!--    <link th:href="@{/css/register.css}" rel="stylesheet">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--    &lt;!&ndash; Include all compiled plugins (below), or include individual files as needed &ndash;&gt;-->
+<!--    <script th:src="@{js/animate.js}" defer></script>-->
+<!--    <script th:src="@{js/bootstrap.min.js}" defer></script>-->
+<!--    <script th:src="@{js/custom.js}" defer></script>-->
+<!--    <script th:src="@{js/load-address.js}" defer></script>-->
+</head>
+<body>
+
+<div class="container">
+    <h3 th:text="${title}"></h3>
+    <p>A verification token has been send to you email. This is your final step to verify your email address. Please click on the
+        link below</p>
+    <a th:href="${link}" th:text="${link}">LINk</a>
+</div>
+</body>
+</html>

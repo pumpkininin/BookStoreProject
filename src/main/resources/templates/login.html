@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>-->
+  <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+  <link th:replace="~{fragments/header :: link}"/>
+  <!-- <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+  <!-- bootstrap -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom CSS: custom Styles -->
+  <link th:href="@{/css/animate.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <link th:href="@{/css/login.css}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script th:src="@{js/animate.js}" defer></script>
+  <script th:src="@{js/bootstrap.min.js}" defer></script>
+  <script th:src="@{js/custom.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<!--  <div class="banner" style="background-image: url('./images/login-banner.jpg');">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="col-sm-12"><h1>Login </h1></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="container-login" style="margin-top: 20px;">-->
+<!--    <div class="row">-->
+<!--      <div class="col-12 "data-aos="fade-left" data-aos-easing="linear" data-aos-duration="400">-->
+<!--        <div class="form-box align-items-center">-->
+<!--          <h3 class="form-header pb-5" style="font-size: 30px;">Signin</h3>-->
+<!--&lt;!&ndash;          <div class="alert alert-success alert-dismissible fade show w-100" role="alert" style="font-size: 2rem">&ndash;&gt;-->
+<!--&lt;!&ndash;            Thông tin đã được gửi tới email của bạn&ndash;&gt;-->
+<!--&lt;!&ndash;            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&ndash;&gt;-->
+<!--&lt;!&ndash;              <span aria-hidden="true">×</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+
+<!--          <form class="login-info d-flex flex-column align-items-center" action="/j_spring_security_check" method="post">-->
+<!--            <div class="eamil-form-group form-group w-100">-->
+<!--              <label for="username" class="font-weight-bold required">Username</label>-->
+<!--              <input class="form-control shadow-none" type="text" name="username" id="username" placeholder="Enter your username">-->
+<!--            </div>-->
+<!--            <div class="company-form-group form-group w-100">-->
+<!--              <label for="password" class="font-weight-bold required">Password</label>-->
+<!--              <input class="form-control shadow-none" type="password" name="password" id="password" placeholder="Enter your password">-->
+<!--            </div>-->
+<!--            <div class="mb-3 float-right forgot-password" style="float: right">-->
+<!--              <a th:href="@{/forgot-form}">Forgot password?</a>-->
+<!--            </div>-->
+<!--            <div class="btn-group" style="float: contour">-->
+<!--              <button class="btn btn-warning btn-signin" style="border-radius: 100px " type="submit">Sign in</button>-->
+<!--            </div>-->
+<!--            <div class="already-exist">-->
+<!--              Have no account yet? <a href="/register-form">Register now</a>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<div class="jumbotron">
+  <!-- Container -->
+  <div class="container">
+    <div data-aos="fade-right">
+      <h1>Enter you username and password</span>
+        <span></span>
+      </h1>
+    </div>
+    <!-- Row -->
+    <div class="row" data-aos="fade-up" data-aos-easing="linear"  data-aos-duration="500">
+      <!-- 1st col -->
+      <div class="col-12 "data-aos="fade-left" data-aos-easing="linear" data-aos-duration="400" style="background: white; padding: 20px">
+        <div class="form-box align-items-center">
+          <h3 class="form-header pb-5" style="font-size: 30px;">Signin</h3>
+          <!--          <div class="alert alert-success alert-dismissible fade show w-100" role="alert" style="font-size: 2rem">-->
+          <!--            Thông tin đã được gửi tới email của bạn-->
+          <!--            <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+          <!--              <span aria-hidden="true">×</span>-->
+          <!--            </button>-->
+          <!--          </div>-->
+          <div class="register-validation alert alert-danger" >
+            <ul>
+              <li th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" th:text="${errorMsg}"></li>
+            </ul>
+          </div>
+          <form class="login-info d-flex flex-column align-items-center" action="/j_spring_security_check" method="post">
+            <div class="eamil-form-group form-group w-100">
+              <label for="username" class="font-weight-bold required">Username</label>
+              <input class="form-control shadow-none" type="text" name="username" id="username" placeholder="Enter your username">
+            </div>
+            <div class="company-form-group form-group w-100">
+              <label for="password" class="font-weight-bold required">Password</label>
+              <input class="form-control shadow-none" type="password" name="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="mb-3 float-right forgot-password" style="float: right">
+              <a th:href="@{/forgot-form}">Forgot password?</a>
+            </div>
+            <div class="btn-group" style="float: contour">
+              <button class="btn btn-warning btn-signin" style="border-radius: 100px " type="submit">Sign in</button>
+            </div>
+            <div class="already-exist">
+              Have no account yet? <a href="/register-form">Register now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Row End -->
+  </div>
+  <!-- Container End-->
+</div>
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="inner-content">
+        <div class="col-sm-6"  data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+          <h2 class="left">Contact us for support</h2>
+          <form>
+            <div class="row">
+              <div class="col-sm-6 form-group">
+                <input class="form-control" name="name" placeholder="Name" type="text" required>
+              </div>
+              <div class="col-sm-6 form-group">
+                <input class="form-control" name="email" placeholder="Email" type="email" required>
+              </div>
+            </div>
+            <textarea class="form-control" name="comments" placeholder="Comment" rows="8"></textarea><br>
+            <div class="row">
+              <div class="col-sm-12 form-group">
+                <button class="btn btn-default pull-left" type="submit">Get In Touch</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm-5 address"  data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+          <h2>Our Office Address</h2>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five </p>
+          <ul class="social-icon">
+            <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <p><a class="footer-logo" href="index.html">pet<span>z</span></a></p>
+        </div>
+        <div class="col-sm-9">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="products.html">Product</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="shop.html">shop</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="blog.html">blog</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="careers.html">careers</a></li>
+            <li><a class="hidden-xs" href="#">|</a></li>
+            <li><a href="#contact">contact</a></li>
+          </ul>
+          <p>(C) 2017, All Rights Reserved <span><a href="https://www.template.net/editable/websites/html5" target="_blank">Petz Theme</a></span>, Designed by <span><a href="https://www.template.net/editable/websites/html5" target="_blank">Template.net</a></span></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+</section>
+</body>
+<style>
+  .section-right{
+    background-image: url("/static/images/login-background");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+</html>

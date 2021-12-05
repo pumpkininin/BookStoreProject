@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="~{fragments/header :: link}"/>
+    <!-- <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+    <!-- bootstrap -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS: custom Styles -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{js/animate.js}" defer></script>
+    <script th:src="@{js/bootstrap.min.js}" defer></script>
+    <script th:src="@{js/custom.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">
+</div>
+<div class="jumbotron">
+    <!-- Container -->
+    <div class="container">
+        <div data-aos="fade-right">
+            <h1>Best book service in the world</span>
+                <span>NKHZ owners</span>
+            </h1>
+            <a class="btn btn-primary btn-lg" href="shop.html" role="button">shop now</a>
+        </div>
+        <!-- Row -->
+        <div class="row" data-aos="fade-up" data-aos-easing="linear"  data-aos-duration="500">
+            <!-- 1st col -->
+            <div class="col-xs-12 col-md-4 col">
+                <a href="product_single.html"><figure class="pete-1" ></figure></a>
+                <div class="inner-content">
+                    <h2><a href="/book/page">Book Service</a></h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1500s.</p>
+                    <p><a href="services.html">readmore...</a></p>
+                </div>
+            </div>
+            <!-- 2st col -->
+            <div class="col-xs-12 col-md-4 col">
+                <a href="product_single.html"><figure class="pete-2"></figure></a>
+                <div class="inner-content">
+                    <h2><a href="/user/cart/cart-list">You cart</a></h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1500s.</p>
+                    <p><a href="services.html">readmore...</a></p>
+                </div>
+            </div>
+            <!-- 3st col -->
+            <div class="col-xs-12 col-md-4 col">
+                <a href="product_single.html"><figure class="pete-3"></figure></a>
+                <div class="inner-content">
+                    <h2><a href="/user/profile">Your profile</a></h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1500s.</p>
+                    <p><a href="services.html">readmore...</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Row End -->
+    </div>
+    <!-- Container End-->
+</div>
+<div class="notification-section">
+    <h1>Register successfully</h1>
+    <h3>
+        Your account has registered successfully, but is not activated and cannot be signed in.<br>
+        To finish, please check your email to verify.<br>
+        Click <a th:href="@{/}">here</a> to redirect to homepage.
+    </h3>
+</div>
+</body>
+</html>

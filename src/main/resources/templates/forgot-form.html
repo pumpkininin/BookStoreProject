@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="~{fragments/header :: link}"/>
+    <!-- <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+    <!-- bootstrap -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS: custom Styles -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+    <link th:href="@{/css/register.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{js/animate.js}" defer></script>
+    <script th:src="@{js/bootstrap.min.js}" defer></script>
+    <script th:src="@{js/custom.js}" defer></script>
+    <script th:src="@{js/load-address.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">
+</div>
+<div class="jumbotron">
+    <!-- Container -->
+    <div class="container">
+        <div data-aos="fade-right">
+            <h1>Set you new password</span>
+            </h1>
+        </div>
+        <!-- Row -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End-->
+</div>
+<div class="about">
+    <div class="container">
+        <div class="inner-content">
+            <div class="row">
+                <div class="about-contant">
+                    <p>Enter your username</p>
+                    <form action="/reset-password">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <input class="form-control" id="username" name="username" placeholder="Username" type="text" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-warning">Reset password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

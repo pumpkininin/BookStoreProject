@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title</title>
+  <!--    <script src="all.min.js"></script>-->
+  <link th:replace="~{fragments/header :: link}"/>
+  <!-- <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+  <!-- bootstrap -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom CSS: custom Styles -->
+  <link th:href="@{/css/animate.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script th:src="@{/js/animate.js}" defer></script>
+  <script th:src="@{/js/bootstrap.min.js}" defer></script>
+  <script th:src="@{/js/custom.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">
+</div>
+<div class="jumbotron">
+  <!-- Container -->
+  <div class="container">
+    <div data-aos="fade-right">
+      <h1>Book in details</span>
+        <span>NKHZ owners</span>
+      </h1>
+    </div>
+    <!-- Row -->
+    <!-- Row End -->
+  </div>
+  <!-- Container End-->
+</div>
+<!-- Jumbotron End -->
+
+<!-- Blog-single Section Start -->
+<section class="single" >
+  <div class="container">
+    <div class="inner-content">
+      <h2 class="myh2" th:text="${book.title}"></h2>
+      <div class="row">
+        <div class="col-sm-12 col-md-8 slider-sec" data-aos="fade-up">
+          <!-- main slider carousel -->
+
+          <div id="myCarousel" class="carousel slide">
+            <!-- main slider carousel items -->
+            <div class="carousel-inner">
+              <div class="item carousel-item active" data-slide-number="0">
+                <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive img-fluid w549">
+              </div>
+              <div class="item carousel-item" data-slide-number="1">
+                <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive img-fluid w549">
+              </div>
+              <div class="item carousel-item" data-slide-number="2">
+                <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive img-fluid w549">
+              </div>
+              <div class="item carousel-item" data-slide-number="3">
+                <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive img-fluid w549">
+              </div>
+            </div>
+            <!-- main slider carousel nav controls -->
+
+            <ul class="carousel-indicators list-inline">
+              <li class="list-inline-item active">
+                <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel">
+                  <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive w98">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a id="carousel-selector-1" data-slide-to="1" data-target="#myCarousel">
+                  <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive w98">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a id="carousel-selector-2" data-slide-to="2" data-target="#myCarousel">
+                  <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive w98">
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a id="carousel-selector-3" data-slide-to="3" data-target="#myCarousel">
+                  <img th:src="${book.img }" alt="image" class="img-thumbnail img-responsive w98">
+                </a>
+              </li>
+            </ul>
+
+          </div>
+          <!--/main slider carousel-->
+        </div>
+        <div class="col-sm-12 col-md-4 slider-content">
+          <p class="myp" data-aos="fade-up" th:text="${book.longDescription}">
+          </p>
+          <p th:text="'Average rate:' +  ${rate}"></p>
+          <p th:text="'Author: ' + ${book.authors.getName()}"></p>
+          <div class="row myrow">
+            <div class="col-sm-12" data-aos="fade-up" data-aos-duration="1000">
+              <ul>
+                <li class="mylist1">
+                  <span class="myspan1">Price</span>&nbsp;&nbsp;
+                  <span class="myspan1">:</span>&nbsp;&nbsp;
+                  <span class="myspan1" th:text="'$'+${book.price}"></span>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-12">
+              <div class="cart" data-aos="fade-up" data-aos-duration="1500">
+                <a th:href="@{'/user/cart/add-to-cart/' + ${book.bookId}}" class="btn btn-info" role="button">ADD TO CART</a>
+                <a href="#" class="btn btn-primary" role="button">BUY NOW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="review">
+  <div class="container">
+    <div class="inner-content">
+      <div class="row myrow1">
+        <div class="col-md-12">
+          <div class="myreview"  data-aos="fade-up">
+            <h2>Reviews</h2>
+            <div class="review-content" th:each="feedback : ${feedbacks}">
+              <h6 th:text="${feedback.getUser().getUsername()}">
+<!--                <span>24.11.2021</span>-->
+              </h6>
+              <p th:text="${feedback.getFeedback()}"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" data-aos="fade-up">
+        <h2>Write a Review</h2>
+        <form class="form-horizontal" th:action="@{'/book/post-feedback/'+${book.bookId}}" method="post">
+          <fieldset>
+            <label class="rating-label"><strong>Give you rating</strong>
+              <input type="number" name="rate" id="rate" max="5">
+            </label>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <textarea class="form-control" placeholder="Type your message" required="true" rows="7" th:id="message" name="message"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-12 form-group">
+              <button class="btn btn-default pull-left" type="submit">Submit Comment</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog-single Section End -->
+<!-- Product Section Start -->
+<section id="product" class="product">
+  <div class="container">
+    <h2>Book with same category</h2>
+    <div class="row">
+      <div th:each="bookItem : ${bookList}" class="col-sm-6 col-md-3 col" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+        <div class="thumbnail">
+          <figure class="image one">
+            <a href="blog_single.html"><img th:src="${bookItem.img}" class="img-responsive" alt="Responsive image"></a>
+          </figure>
+          <div class="caption">
+            <h3><a href="product_single.html" th:text="${bookItem.title}"></a></h3>
+            <p class="description" th:text="${bookItem.longDescription}"></p>
+            <div class="box">
+              <p><span th:text="'$'+${bookItem.price}"> </span></p>
+              <span class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+<style>
+  .rating {
+    --dir: right;
+    --fill: gold;
+    --fillbg: rgba(100, 100, 100, 0.15);
+    --heart: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.328l-1.453-1.313q-2.484-2.25-3.609-3.328t-2.508-2.672-1.898-2.883-0.516-2.648q0-2.297 1.57-3.891t3.914-1.594q2.719 0 4.5 2.109 1.781-2.109 4.5-2.109 2.344 0 3.914 1.594t1.57 3.891q0 1.828-1.219 3.797t-2.648 3.422-4.664 4.359z"/></svg>');
+    --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+    --stars: 5;
+    --starsize: 3rem;
+    --symbol: var(--star);
+    --value: 1;
+    --w: calc(var(--stars) * var(--starsize));
+    --x: calc(100% * (var(--value) / var(--stars)));
+    block-size: var(--starsize);
+    inline-size: var(--w);
+    position: relative;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+  }
+  [dir="rtl"] .rating {
+    --dir: left;
+  }
+  .rating::-moz-range-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--symbol);
+  }
+  .rating::-webkit-slider-runnable-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--symbol);
+    -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+  }
+  .rating::-moz-range-thumb {
+    height: var(--starsize);
+    opacity: 0;
+    width: var(--starsize);
+  }
+  .rating::-webkit-slider-thumb {
+    height: var(--starsize);
+    opacity: 0;
+    width: var(--starsize);
+    -webkit-appearance: none;
+  }
+  .rating, .rating-label {
+    display: block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  .rating-label {
+    margin-block-end: 1rem;
+  }
+
+  /* NO JS */
+  .rating--nojs::-moz-range-track {
+    background: var(--fillbg);
+  }
+  .rating--nojs::-moz-range-progress {
+    background: var(--fill);
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--star);
+  }
+  .rating--nojs::-webkit-slider-runnable-track {
+    background: var(--fillbg);
+  }
+  .rating--nojs::-webkit-slider-thumb {
+    background-color: var(--fill);
+    box-shadow: calc(0rem - var(--w)) 0 0 var(--w) var(--fill);
+    opacity: 1;
+    width: 1px;
+  }
+  [dir="rtl"] .rating--nojs::-webkit-slider-thumb {
+    box-shadow: var(--w) 0 0 var(--w) var(--fill);
+  }
+</style>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+    <!-- bootstrap -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS: custom Styles -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{js/animate.js}" defer></script>
+    <script th:src="@{js/bootstrap.min.js}" defer></script>
+    <script th:src="@{js/custom.js}" defer></script>
+</head>
+<body>
+<header class="header" id="myHeader">
+    <!-- nav -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">HKH<span>Z</span></a>
+            </div>
+
+            <!-- Collect the nav links and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/"><i style="font-size: 2rem;"class="fa fa-home" aria-hidden="true"></i> <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/book/page"><i style="font-size: 2rem;"class="fa fa-book"></i> </a></li>
+                    <li><a href="/user/cart/cart-list"><i style="font-size: 2rem;"class="fa fa-shopping-cart"></i></a></li>
+                    <li><a href="/user/order/order-list"><i style="font-size: 2rem;"class="fa fa-truck"></i></a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" id="dropdownMenuButton" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i style="font-size: 2rem;"class="fa fa-search ">
+                            </i> </a>
+                        <div class="dropdown-menu dropdown-form" aria-labelledby="dropdownMenuButton">
+                            <form class="dropdown-item" action="/book/search">
+                                <input style="width: 500px;padding: 5px;" type="text" id="keyword" name="keyword">
+                            </form>
+
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" id="dropdownMenuButton1" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i style="font-size: 2rem;"class="fa fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <a class="dropdown-item" href="/user/profile" style="display: block;padding: 5px;">Profile</a>
+                            <a class="dropdown-item" href="#" style="display: block;padding: 5px;">Change password</a>
+                            <a class="dropdown-item" href="/logout" style="display: block;padding: 5px;">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-->
+    </nav>
+    <!-- nav Ended-->
+</header>
+
+</body>
+<style>
+    .dropdown-item{
+        display: block;
+        padding: 5px;
+    }
+    .dropdown-item > input{
+        width: 500px;
+        padding: 5px;
+    }
+</style>
+</html>

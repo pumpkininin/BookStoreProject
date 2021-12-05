@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>-->
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+    <link th:replace="~{fragments/header :: link}"/>
+    <!-- <script src="https://kit.fontawesome.com/f307da1c01.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,400i,500,600,700" rel="stylesheet">
+    <!-- bootstrap -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS: custom Styles -->
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/login.css}" rel="stylesheet">
+    <link th:href="@{/css/register.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{/js/animate.js}" defer></script>
+    <script th:src="@{/js/bootstrap.min.js}" defer></script>
+    <script th:src="@{/js/custom.js}" defer></script>
+    <script th:src="@{/js/load-address.js}" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">
+</div>
+<div class="jumbotron">
+    <!-- Container -->
+    <div class="container">
+        <div data-aos="fade-right">
+            <h1>Update your profile</span>
+            </h1>
+        </div>
+        <!-- Row -->
+        <!-- Row End -->
+    </div>
+    <!-- Container End-->
+</div>
+<div class="container-login" style="margin-top: 120px;">
+    <div class="row">
+        <div class="col-12 "data-aos="fade-left" data-aos-easing="linear" data-aos-duration="400">
+            <div class="form-box align-items-center">
+                <h3 class="form-header pb-5" style="font-size: 30px;">Update profile</h3>
+                <div class="register-validation alert alert-danger">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('userDto.*')}" th:text="${err}"  style="display: block"/>
+                    </ul>
+                </div>
+                <form class="register-form" th:action="@{/user/update-profile}" th:object="${userDto}" method="POST"
+                      enctype="multipart/form-data">
+                    <div class="avt">
+                        <div class="avt-holder">
+                            <img id="prev" th:src="${userDto.avt}" alt="">
+                        </div>
+                        <div class="upload-img-holder">
+                            <label for="upload">
+                                <input
+                                        type="file"
+                                        accept="image/png, image/jpg"
+                                        id="upload"
+                                        name="file"
+                                        style="display: none"
+                                        onchange="readURL(this);"
+                                />
+                                Upload your avatar
+                            </label>
+                        </div>
+                    </div>
+                    <div class="account-name input-holder">
+                        <div class="first-name-input input-holder">
+                            <label for="firstName">First name</label>
+                            <input th:placeholder="${userDto.getFirstName()}" type="text" class="first-name" name="firstName" id="firstName" th:field="*{firstName}">
+                        </div>
+                        <div class="last-name-input input-holder">
+                            <label for="lastName">last name</label>
+                            <input th:placeholder="${userDto.getLastName()}" type="text" class="last-name" name="lastName" id="lastName" th:field="*{lastName}">
+                        </div>
+                    </div>
+                    <div class="username-gender">
+                        <div class="user-input input-holder">
+                            <label for="username">User name</label>
+                            <input th:placeholder="${userDto.getUsername()}" type="text" class="username" name="username" id="username" autocomplete="username"
+                                   th:field="*{username}" readonly>
+                        </div>
+                        <div class="gender-input input-holder">
+                            <label for="gender">Gender</label>
+                            <select name="gender" id="gender" th:field="*{gender}">
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
+                                <option value="o">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="email-input input-holder">
+                        <label for="email">Email</label>
+                        <input th:placeholder="${userDto.getEmail()}" type="email" id="email" name="email" th:field="*{email}"> <br>
+                    </div>
+                    <div class="phone-dob">
+                        <div class="phone-number-input input-holder">
+                            <label for="phone-number">Phone number</label>
+                            <input th:placeholder="${userDto.getPhoneNumber()}" type="tel" p12attern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone-number" id="phone-number"
+                                   th:field="*{phoneNumber}">
+                        </div>
+                        <div class="dob-input input-holder">
+                            <label for="dob">Date of birth</label>
+                            <input th:placeholder="${userDto.getDob()}" type="date" name="dob" id="dob" th:field="*{dob}">
+                            <p th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}">Validation error</p>
+                        </div>
+                    </div>
+                    <div class="address-input-holder">
+                        <label for="email">Address</label>
+                        <input th:placeholder="${userDto.getAddress()}" type="text" id="address" name="address" th:field="*{address}"> <br>
+                    </div>
+
+                    <button class="btn-submit" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="inner-content">
+                <div class="col-sm-6"  data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+                    <h2 class="left">Contact us for support</h2>
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <input class="form-control" name="name" placeholder="Name" type="text" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <input class="form-control" name="email" placeholder="Email" type="email" required>
+                            </div>
+                        </div>
+                        <textarea class="form-control" name="comments" placeholder="Comment" rows="8"></textarea><br>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <button class="btn btn-default pull-left" type="submit">Get In Touch</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-5 address"  data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500">
+                    <h2>Our Office Address</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five </p>
+                    <ul class="social-icon">
+                        <li><a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube-square" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <p><a class="footer-logo" href="/">NKH<span>z</span></a></p>
+                </div>
+                <div class="col-sm-9">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="products.html">Product</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="shop.html">shop</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="blog.html">blog</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="careers.html">careers</a></li>
+                        <li><a class="hidden-xs" href="#">|</a></li>
+                        <li><a href="#contact">contact</a></li>
+                    </ul>
+                    <p>(C) 2017, All Rights Reserved <span><a href="https://www.template.net/editable/websites/html5" target="_blank">Petz Theme</a></span>, Designed by <span><a href="https://www.template.net/editable/websites/html5" target="_blank">Template.net</a></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+</section>
+</body>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#prev').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<style>
+</style>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="message">
+    <p th:text="${message}"></p>
+    <a th:href="@{'/resendVerificationToken?token=' + ${token}}">Please click on this link to resend verification
+        token</a>
+</div>
+</body>
+</html>
